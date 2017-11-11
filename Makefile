@@ -137,7 +137,7 @@ ifndef CPPFLAGS
 endif 
 
 ifndef CFLAGS
-	CFLAGS = -c 
+	CFLAGS = -c -fPIC 
 endif
 
 ifndef CXXFLAGS
