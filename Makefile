@@ -1,17 +1,30 @@
 # Makefile
 
-# 
-# Copyright (C) Befikr Systems, Inc - All Rights Reserved
-# Unauthorized copying of this file, via any medium is strictly prohibited
-# Proprietary and confidential
-# Written by Goutam Hegde <goutam@garudha.org>, October 2017
+# LIBNERDNETWORK - The NERDDNTWORK Library
+# Copyright (C) 2017 Goutam Hegde
 #
+# Makefile
+# (C) 2017 Goutam Hegde <goutam@garudha.org>
+#
+# This library is free software: you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 3 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library.  If not, see
+# <http://www.gnu.org/licenses/>.
 
 #------------------- Variables defining user-defined configurations ----------#
 
 
 ifndef INCLUDES
-	INCLUDES = -Iconfig/
+	INCLUDES = -Iinclude/
 endif
 
 ifndef LIBS
