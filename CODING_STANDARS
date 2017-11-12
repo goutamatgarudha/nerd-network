@@ -1,0 +1,146 @@
+								================
+								CODING STANDARDS
+                                ================
+                                        
+                                    ======
+                                    Author
+                                    ======
+						Goutam Hegde - goutam@garudha.org
+                              
+                              
+1) C version:
+-------------
+
+ All programs shall be written to comply with the ISO/IEC 9899:2011 standards.
+	eg: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
+ 
+2) Line Widths:
+---------------
+The length of all lines in a program shall be limited to a maximum of 
+80 characters.
+
+3) Braces:
+----------
+a) Braces shall always surround the blocks of code.
+b) if, else, switch, while, do, and for statements should always surrounded by
+	braces.Even Single and empty statements following these keywords shall also 
+	always be surrounded by braces.
+c) Each left brace (‘{‘) shall appear one the first column below the the
+   statements containing these keywords. 
+d) Corresponding right brace (‘}’) shall appear in the same position the 
+   appropriate number of lines later in the file.
+e) Line containing braces can contain comments but not the code.
+eg:// 
+for (//.....)
+{
+	//.. Statements
+}
+
+4) Paranthesis:
+---------------
+a) Check this document for operator precedence rule of c langauge.
+   http://www.swansontec.com/sopc.html
+b) Unless it is a single identifier or constant, each operand of the 
+	logical && and || operators shall be surrounded by parentheses.
+
+5) Acronyms and abbrevations:
+-----------------------------
+a) Acronyms and abbrevations should be avoided unless they are popular in
+   the engineering community.
+
+6) Type casting:
+----------------
+a) All casts should be properly commented describing how the proper behaviour 
+   is ensured across the range values on the right hand side.
+	
+	eg:
+
+    int
+    abs (int arg)
+    {
+        return ((arg < ZERO) ? -arg : arg);
+    }
+
+    
+    uint16_t input_val = ZERO; 
+    int result = ZERO;
+
+    input_val = some_read_func();
+    result = abs((int) sample); // 32-bit int assumed.
+	
+    Explanation: In the example above, unsigned 16-bit "input_val" can take a 
+                 larger range of positive values than a signed 16-bit integer.
+                 In that case, the absolute value will be incorrect as there is
+                 a possible overflow  if int is only 16-bit, as the C standard 
+                 permits. 
+
+7) Keywords:
+------------
+a) "goto":
+    Never use "goto"s in the program as using of goto is freely buying the 
+    caompiler bugs.
+b) "break" and "continue":
+    Be careful while using "break" and "continue"s.
+    Read this discussion on stack overflow for details on this. Read only the
+    accepted answer. 
+    https://stackoverflow.com/questions/3922599/is-it-a-bad-practice-to-use-break-in-a-for-loop
+c) "auto":
+    Don't use this keyword as this feature is no longer required and outdated.
+
+
+8)Comments and Documentation:
+-------------------------------
+    By default Doxygen is is used as the document parser. Link to the manual
+    http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html
+    
+a) Documenting and commenting language.
+    - All the documents should be written in simple American English.
+    - Documents should not contain offensive language and swear words.
+    - Pay attention to grammar and spelling.
+    - Use proper punctuation marks.
+    - You can use this tool to verify grammar, punctation marks and spelling.
+       https://app.grammarly.com/
+
+b) Documenting the module:
+    awesome_module.h
+    ....
+    /**
+     * @brief This module contains performs awesome operations.
+     * @details This module is built to perform awesome operations.
+     *          This module performs these tasks:
+     *          - Makes life simpler.
+     *          - Does all the magic required.
+     *          - And does other blah, blah and blah tasks.
+     * @bug This module is super awesome so that it creates a memory leak.
+     * @warning This module may empty your pocket.
+     * @warning This module may cause power loss in your house.
+     *
+     * @file awesome_module.h
+     * @date Sun Nov 12 10:31:41 UTC 2017
+     * @author Goutam Hegde - goutam@garudha.org 
+     */
+     Note: 
+        - Date should always be in UTC timezone and the format specified above.
+          You can use `r! date -u` command if using vim.
+        - Don't forget to include email address along with author name.
+ 
+c) Documenting the functions:
+    /**
+     * @brief This function performs superb task.
+     * @details This function does blah, blah, blah and blah.
+     * @param superb_input A superb argument which feeds necessary information
+     *                     for the superb task.
+     * @param superb_output A superb argument to which the output of the superb
+     *                      task has to be set.
+     * @attention Memory should be allocated to supreb function beforing passing 
+     *            as argument.
+     * @return Returns the error code.
+     * @retval STATUS_SUCCESS If superb task is done.
+     * @retval STATUS_FAIL If superb task is not done.
+     */
+    int
+    superb_function (char * superb_input, char * superb_output)
+    {
+        .....
+        return status;
+    }
