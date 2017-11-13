@@ -1,23 +1,23 @@
-								================
-								CODING STANDARDS
-                                ================
+							   ====================
+							   CODING STANDARDS - C
+                               ====================
                                         
                                     ======
                                     Author
                                     ======
-						Goutam Hegde - goutam@garudha.org
+					    Goutam Hegde - goutam@garudha.org
                               
                               
 1) C version:
 -------------
 
  All programs shall be written to comply with the ISO/IEC 9899:2011 standards.
-	eg: https://en.wikipedia.org/wiki/C11_(C_standard_revision)
+ https://en.wikipedia.org/wiki/C11_(C_standard_revision)
  
 2) Line Widths:
 ---------------
-The length of all lines in a program shall be limited to a maximum of 
-80 characters.
+a) The length of all lines in a program shall be limited to a maximum of 
+    80 characters.
 
 3) Braces:
 ----------
@@ -88,59 +88,250 @@ c) "auto":
     Don't use this keyword as this feature is no longer required and outdated.
 
 
-8)Comments and Documentation:
+8) Comments and Documentation:
 -------------------------------
     By default Doxygen is is used as the document parser. Link to the manual
     http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html
     
-a) Documenting and commenting language.
-    - All the documents should be written in simple American English.
-    - Documents should not contain offensive language and swear words.
-    - Pay attention to grammar and spelling.
-    - Use proper punctuation marks.
+8.a) Documenting and commenting general rules.
+    - Always comment describing initentions, assumptions and behaviour 
+      of the program.
+    - In addition to comments code documentation should be written as per the
+      instruction mentioned in sections from (8.d) to (8.f).
+    - Anything related to concepts of c langauge should not be commented.
+    - Whenver using algorithm or technical details from public domain provide 
+      a reference to the original source.
+    - All documents and comments should be written in simple American English.
+    - Documents and comments should not contain offensive language.
+    - Attention should be given towards proper use grammar, spelling and 
+       punctation marks.
     - You can use this tool to verify grammar, punctation marks and spelling.
        https://app.grammarly.com/
+    - Documents for functions and module should contain atleast one concise 
+      example.
+8.b) Never use comments for disabling a codeblock code block even for 
+     temperory purpose. Instead preprocessor's conditional feature 
+     (e.g., #if 0 ... #endif) should be used.
+8.c) Use these comment markers to highlight important things.
+    i) "WARNING:" Use this marker to inform about the risks in changing the 
+                  existing code.
+        Eg:
+        // WARNING: This module is optimized in terms of cpu usage and memory.
+        //          If any changes required intensions have to be discussed 
+        //          and special permission has to be obtained to make changes.
 
-b) Documenting the module:
+    ii) "NOTE:" Use this marker to inform any exception situations handled.
+        Eg:
+        // NOTE: Union is used instead of void pointer to limit the data types 
+        //       in the generic data strucutre. 
+   
+     iii) "TODO:" Use this marker to inform about the tasks those have to be
+                  implemented.
+        Eg:
+        
+        /**
+         * ....
+         */
+        int
+        say_hello_world () 
+        {
+            // TODO: Print hello world message.
+        }
+
+
+Below list gives minimum required documentation. In case necessary feel free to
+add more details.
+8.d) Documenting the module:
     awesome_module.h
     ....
     /**
-     * @brief This module contains performs awesome operations.
-     * @details This module is built to perform awesome operations.
-     *          This module performs these tasks:
-     *          - Makes life simpler.
-     *          - Does all the magic required.
-     *          - And does other blah, blah and blah tasks.
-     * @bug This module is super awesome so that it creates a memory leak.
-     * @warning This module may empty your pocket.
-     * @warning This module may cause power loss in your house.
-     *
      * @file awesome_module.h
      * @date Sun Nov 12 10:31:41 UTC 2017
      * @author Goutam Hegde - goutam@garudha.org 
+     * @brief This module contains performs awesome operations.
+     *
+     * (Details about the module)
+     * This module is built to perform awesome operations.
+     *     This module performs these tasks:
+     *     - Makes life simpler.
+     *     - Does all the magic required.
+     *     - And does other blah, blah and blah tasks.
+     * @bug This module is super awesome so that it creates a memory leak.
+     * @warning This module may empty your pocket.
+     * @warning This module may cause power loss in your house.
+     * 
+     * @code{.c}
+     * .....
+     * int
+     * main (int argc, char ** argv)
+     * {
+     *     char * awesome_variable = NULL;
+     *     awesome_variable = awesome_func (awesome_arg);
+     *     
+     *     return EXIT_SUCCESS;
+     * }
+     * @endcode 
      */
      Note: 
         - Date should always be in UTC timezone and the format specified above.
           You can use `r! date -u` command if using vim.
         - Don't forget to include email address along with author name.
  
-c) Documenting the functions:
+8.e) Documenting the functions:
     /**
+     * @fn int superb_function (char * superb_input, char * superb_output)
      * @brief This function performs superb task.
-     * @details This function does blah, blah, blah and blah.
+     * 
+     * (Details about the function)
+     * This function does blah, blah, blah and blah.
      * @param superb_input A superb argument which feeds necessary information
      *                     for the superb task.
      * @param superb_output A superb argument to which the output of the superb
      *                      task has to be set.
      * @attention Memory should be allocated to supreb function beforing passing 
-     *            as argument.
+     *            as argument and should be freed after the use.
      * @return Returns the error code.
      * @retval STATUS_SUCCESS If superb task is done.
      * @retval STATUS_FAIL If superb task is not done.
+     *
+     * @code{.c}
+     * ....
+     * int 
+     * main (int argc, char ** argv)
+     * {
+     *     // Initializing superb variables.
+     *     char * superb_input = NULL;
+     *     char * superb_ouput = NULL;
+     *     int8_t status = STATUS_SUCCESS;      
+     *
+     *     // Allocating memory to variables.
+     *     superb_input = allocate_memory ();
+     *     //TODO: Do something if allocation to superb_input fails.
+     *     
+     *     superb_output = allocate_memory ();
+     *     //TODO: Do something if allocation to superb_input fails.
+     *
+     *     status = superb_function (superb_input, superb_output);
+     *     
+     *     if (STATUS_SUCCES == status) 
+     *     {
+     *         // TODO: Do something if function executed successfully.
+     *     } 
+     *     else if (STATUS_FAIL == status)
+     *     {
+     *         // TODO: DO something if function is not executed successfully.
+     *     }
+     * 
+     *     if (NULL != superb_input)
+     *     {
+     *         free (superb_input);
+     *         superb_input = NULL;
+     *     } 
+     *     
+     *     if (NULL != superb_output)
+     *     {
+     *         free (superb_output);
+     *         superb_output = NULL;
+     *     } 
+     * 
+     *     return EXIT_SUCCES;
+     * }
+     * @endcode
      */
-    int
+    int8_t
     superb_function (char * superb_input, char * superb_output)
     {
         .....
         return status;
     }
+
+
+8.f) Documenting the typedefs:
+
+    i) A simple typedef:
+    /**
+     * @typedef m_uint_t
+     * @brief A wrapper to unsigned int.
+     * 
+     *  Few more details about typedef.
+     */
+    typedef unsigned int m_uint_t;   
+    
+    ii) "struct"s:
+    /**
+     * @typedef book_t
+     * @struct book_t book.h "include/book.h' 
+     * @brief An object which represents the books.
+     *
+     * (Details about the structure)
+     * This object represents the bookand  contains all the information
+     * related to the book like author, publisher, ISBN etc.
+     */
+    typedef struct
+    {
+        /**
+         * @property title
+         * @brief Titile of the book.
+         */
+        char * title;
+
+        /**
+         * @property author
+         * @brief Author of the book. 
+         */
+        char * author;
+        
+        /**
+         * @property is_published
+         * @brief Bit field representing whether the book is published or not.
+         */
+        unsigned int is_published : ONE;
+    } book_t;
+
+    iii) "union"s:
+    /**
+     * @typedef generic_t
+     * @union generic_t generic.h "include/generic.h"
+     * @brief This union represents a generic object with support for 
+     *         multiple data types.
+     *
+     *  This data_structure has been developed to emulate the 
+     *  template programming of c++ language.
+     */
+    typedef union
+    {
+        /**
+         * @property int_val
+         * @brief Set value to this variable if int value is needed.
+         */
+        int int_val;
+
+        /**
+         * @property string_val
+         * @brief Set value to this variable if string values is needed.
+         */
+        char * string_val;
+    } generic_t;
+    iv) "enum"s:
+    /**
+     * @typedef week_day_t
+     *
+     * @brief This enum represents the day of the week. 
+     */
+    typedef enum
+    {
+        /**
+         * @brief SUNDAY a day of week.
+         * 
+         * Write little more deatils about the enumarators if needed.
+         */
+        SUNDAY,
+        
+        /**
+         * ......
+         */
+        MONDAY,
+        
+        ........
+    } week_day_t;
+
