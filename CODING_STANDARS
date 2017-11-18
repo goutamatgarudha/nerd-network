@@ -562,3 +562,20 @@ add more details.
 10.g) Macro names:
       All the macro names should use UPPER_SNAKE_CASE.
       eg: #define ONE_THOUSAND_AND_HUNDRED 1100
+
+10.f) Pointers:
+      All the pointers should be suffixed with _ptr.
+      eg:
+        my_date_type_t * my_data_type_ptr = NULL;
+
+11) Miscellaneous:
+------------------
+
+11.a) While using comparision operator constant has to appear on left hand side.
+      eg:
+
+      if (NULL == ex_ptr)
+      {
+          ......  
+      }
+
