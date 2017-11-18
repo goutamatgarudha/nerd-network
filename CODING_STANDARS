@@ -6,7 +6,34 @@
                                     Author
                                     ======
 					    Goutam Hegde - goutam@garudha.org
-                              
+                             
+
+Disclaimer:
+-----------
+Coding standards should be followed not created. These standards are adopted from
+CERT, MISRA and SAN TOP 25 and the C programmers community. We don't claim all the
+standards are owned by us.
+
+
+Thoughts:
+---------
+Coding standards the best practices and guidelines for software development not
+a religion or tradition. Following these standards 100% without deviation doesn't
+make sense. But remember a deviation should have proper reason. 
+
+eg: 
+    Line width
+    80 character limit.
+    
+    In case a statement contains 81 characters and breaking that line affects the
+    readability of the code then 81 characters can be used in a line.
+
+Please refer the coding standards documented in 
+https://www.sonarsource.com/products/codeanalyzers/sonarcfamilyforcpp/rules-c.html
+
+Apart from that these standards have to be followed.
+
+ 
                               
 1) C version:
 -------------
@@ -16,20 +43,20 @@
  
 2) Line Widths:
 ---------------
-a) The length of all lines in a program shall be limited to a maximum of 
+2.a) The length of all lines in a program shall be limited to a maximum of 
     80 characters.
 
 3) Braces:
 ----------
-a) Braces shall always surround the blocks of code.
-b) if, else, switch, while, do, and for statements should always surrounded by
+3.a) Braces shall always surround the blocks of code.
+3.b) if, else, switch, while, do, and for statements should always surrounded by
 	braces.Even Single and empty statements following these keywords shall also 
 	always be surrounded by braces.
-c) Each left brace (‘{‘) shall appear one the first column below the the
+3.c) Each left brace (‘{‘) shall appear one the first column below the the
    statements containing these keywords. 
-d) Corresponding right brace (‘}’) shall appear in the same position the 
+3.d) Corresponding right brace (‘}’) shall appear in the same position the 
    appropriate number of lines later in the file.
-e) Line containing braces can contain comments but not the code.
+3.e) Line containing braces can contain comments but not the code.
 eg:// 
 for (//.....)
 {
@@ -38,19 +65,19 @@ for (//.....)
 
 4) Paranthesis:
 ---------------
-a) Check this document for operator precedence rule of c langauge.
+4.a) Check this document for operator precedence rule of c langauge.
    http://www.swansontec.com/sopc.html
-b) Unless it is a single identifier or constant, each operand of the 
+4.b) Unless it is a single identifier or constant, each operand of the 
 	logical && and || operators shall be surrounded by parentheses.
 
 5) Acronyms and abbrevations:
 -----------------------------
-a) Acronyms and abbrevations should be avoided unless they are popular in
+5.a) Acronyms and abbrevations should be avoided unless they are popular in
    the engineering community.
 
 6) Type casting:
 ----------------
-a) All casts should be properly commented describing how the proper behaviour 
+6.a) All casts should be properly commented describing how the proper behaviour 
    is ensured across the range values on the right hand side.
 	
 	eg:
@@ -76,15 +103,15 @@ a) All casts should be properly commented describing how the proper behaviour
 
 7) Keywords:
 ------------
-a) "goto":
+7.a) "goto":
     Never use "goto"s in the program as using of goto is freely buying the 
     caompiler bugs.
-b) "break" and "continue":
+7.b) "break" and "continue":
     Be careful while using "break" and "continue"s.
     Read this discussion on stack overflow for details on this. Read only the
     accepted answer. 
     https://stackoverflow.com/questions/3922599/is-it-a-bad-practice-to-use-break-in-a-for-loop
-c) "auto":
+7.c) "auto":
     Don't use this keyword as this feature is no longer required and outdated.
 
 
@@ -335,3 +362,203 @@ add more details.
         ........
     } week_day_t;
 
+9) White spaces, alignment and indentation:
+-------------------------------------------
+
+9.a) Spaces:
+    i) Each of the keywords if, else, while, for, switch, return shall 
+       always be followed by one space.
+       eg: if (NULL == valid_pointer)
+           {
+               //TODO: Free the memory.
+           }
+    ii) Each of the assignment operators =, +=, -=, *=, /=, %=, &=, |=, ^=, ~=,
+         and != shall always be preceded and followed by one space.
+    iii) Each of the binary operators +, -, *, /, %, <, <=, >, >=, ==, !=, <<,
+       >>, &, |, ^, &&, and || shall always be preceded and followed 
+       by one space.
+       eg: c = a + b;
+    iv) Each of the unary operators +, -, ++, --, !, and ~, shall always be 
+        written without a space on the operand side and with one space 
+        on the other side.
+        eg:   
+            minus_value = -value;
+        NOTE: Don't follow this rule when the operators are not used as unary 
+              operators.
+    v) The pointer operator * shall be written with white space on each
+        side within declarations Where as & should be wriitn without space on
+        the operand side:
+        
+        Eg:
+        char * pointer = &variable;
+    vi) Ternary operators : and ? should always be followed and proceeded by
+        space. 
+        eg :
+            status = (SOME_CONSTANT == name) ? true : false;
+        NOTE: DOn't follow this rule when these operators are not used as 
+              ternary operators.
+    vii) The structure pointer and structure member
+         operators (-> and ., respectively) shall always be without surrounding
+         spaces.
+    viii) The left and right brackets of the array subscript operator ([ and ])
+          shall always be without surrounding spaces.
+    ix) Expressions within parentheses shall always have
+        no spaces adjacent to the left and right parenthesis
+        characters.
+    x) The left and right parentheses of the function call operator 
+       and function defination shall always be preceeded by spaces but not 
+       followed by spaces.
+    xi) Each comma separating function parameters shall always be followed 
+        by one space.
+    xii) Each semicolon separating the elements of a for statement shall always 
+         be followed by one space.
+    xiii) Each semicolon shall follow the statement it terminates without a 
+          preceding space.
+    iv) Line endings should never contain a whitespace.
+
+9.b) Alignment:
+    i) The names of variables within a series of declarations shall 
+       have their first characters aligned.
+       eg:
+            int    age   = ZERO;
+            char * name  = NULL;
+
+    ii) The assignment operators within a block of adjacent assignment
+        statements shall be aligned.
+        eg: Refer the above example.
+
+    ii) The above rules should not be followed if there are comments in between
+        the lines.
+        eg: 
+            /*
+             * ................
+             */
+             int age = ZERO;
+
+             /*
+              * ................
+              */
+              char * name = NULL;
+
+    iv) The # in a preprocessor directive shall always be located in 
+        column one, except when indenting within a #if or #ifdef sequence.
+    
+    v) In case of a long line is breaken care should be taken to align them in 
+       most readable way.
+    vi) Id the line has to be breaken in betweeen the arguments of function
+        declaration or call then the first character (not the brace) has to be 
+        algined and comma should not appear on the next line.
+        eg:
+            int a_long_function_with_multipl_arguments (char * name, int age,
+                                                        uint8_t sex);
+    vii) Backslash '\' should never be used to break the lines as it creates 
+        confusion with division operator.
+        NOTE: Bacslashes can be used in "Makefile"s with a preceeding white 
+              space as "Makefile"s don't understand the intension if the 
+               backslashes are not used.
+     
+9.c) Blank Lines:
+    i) There shall be a blank line after each block of code.
+    ii) Variable declarations and other statements should be grouped using
+        one blank line to create proper context.
+    iii) Improper grouping using blank lines are not allowed.
+    iv) More than two blank lines are not allowed.
+    v) Two blank lines should be used only if it is really necessay.
+    vi) No source code should contain blank line/lines at the end of file.
+
+9.d) Indentation:
+    i) Tabs should never be used to indent the code.
+       Note: You can usee :se expandtab option to expand tabs into spaces if 
+             using vim.
+    ii) Within a switch statement, each case statement should be indented; 
+        the contents of the case block should be indented once more.
+        "break" statement should indented in the same level of the indentation
+        used for case statement.
+
+9.e) Linefeeds:
+     a) Always use LF to break the line. If using an operating system other than
+        unix which doesn't use LF as the line feed use git's 
+        "checkin in unix style and checkout in windows(or whatever) style" 
+        feature.
+
+10) Naming conventions:
+-----------------------
+10.a) Generial rules:
+        - All variable, function, module, macro, file and directory name 
+          should be meaningfull name. Avoid using names like i, j, k, x1, x2
+        - All variable, function, module, macro, file and directory name
+          should not clash with c standard names.
+        - All the variable or function names which are visible outside the module
+          should never share a common name. 
+        - In case using third party libraries which follow different standars
+          proper wrappers should be written following this naming convention. 
+
+10.b) Function names:
+      i) All the functions should use snake_case and should contain only 
+         lower_case letters, under_scores.
+         eg:
+
+         int8_t  
+         my_meaningful_function_name ();
+
+      ii) All the functions which take struct pointer representing the module
+          should start with module's name.
+          eg:
+            linked_list_add (linked_list_t *linked_list);
+      iii) Names like m_list, m_some_name should be avoided.
+      
+10.c) Variable and property names:
+       All the variable and mmebers of "union" or "struct"s should also
+       follow the same rules as that for function names.
+        eg:
+            int8_t age = ZERO;
+
+10.d) "typedef" names:
+      i)  All the typedef should follow the same rules of function names and 
+          all typedefs should be followed by "_t".
+          eg :
+            typedef struct
+            {    
+                .....  
+            } book_t;
+      ii) Any "typedef"s representing the whole module should have the 
+          same name of the module followed by _t.
+          eg:
+            red_black_tree.h
+            ........
+            typedef struct
+            {
+                /**
+                 * .............
+                 */
+                node_t * red_node;
+                
+                /**
+                 * ..............
+                 */
+                node_t * black_node;
+
+            } red_black_tree_t;
+
+10.e) File names:
+      File names should also follow the same naming rule of functions.
+      Additionaly files representing modules, i.e. *.h -> *.c 
+      should contain same name.
+      eg:
+        number_util.h
+        number_util.c
+        
+10.f) Directory and sub directory names:
+      All the directories and sub directories except project directory
+      should also follow the same naming rules for that of function names.
+      In case of project directory "-" hyphen should be used to seperate the
+      words.
+      eg:
+        project-dir 
+            src/
+                sub_dir_one/
+                sub_dir_two/
+
+10.g) Macro names:
+      All the macro names should use UPPER_SNAKE_CASE.
+      eg: #define ONE_THOUSAND_AND_HUNDRED 1100
